@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
-    //11 Yazılım A Bilal Aksoy
     public partial class Form1 : Form
     {
         private bool temizle;
@@ -16,7 +15,6 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            /* Herhangi bir butona basıldığında otomatik = butonuna gidiyor bu şekilde Enter tuşuna basıldığında hesaplama  yapacak! */
             ButonKontrolcu();
         }
         private void ButonKontrolcu()
@@ -33,13 +31,10 @@ namespace WindowsFormsApp1
         {
             this.ActiveControl = button15;
         }
-        /* Herhangi bir butona basıldığında otomatik = butonuna gidiyor bu şekilde Enter tuşuna basıldığında hesaplama  yapacak! */
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("11 Yazılım A Bilal Aksoy");
             this.ActiveControl = button15;
         }
-        /* İşlemleri burada yapıyor */
         private static double EvaluateExpression(string ifade)
         {
             DataTable table = new DataTable();
@@ -49,19 +44,16 @@ namespace WindowsFormsApp1
             float sonuc = float.Parse((string)row["expression"]);
             return sonuc;
         }
-        /* İşlemleri burada yapıyor */
         private void button15_Click(object sender, EventArgs e)
         {
             try
             {
                 string ifade = textBox2.Text;
-
-                /* Araştırarak buldum test aşamasında elden geçireceğim */
                 if (ifade.Contains("√"))
                 {
                     ifade = Regex.Replace(ifade, @"√\(([^)]*)\)", match =>
                     {
-                        float deger = float.Parse(match.Groups[1].Value); //Üstte ki ifade den boşluktan hemen sonra ki sayıyı alıyor
+                        float deger = float.Parse(match.Groups[1].Value);
                         double karakok = Math.Sqrt(deger);
                         if (karaislem2 == false)
                         {
@@ -80,9 +72,7 @@ namespace WindowsFormsApp1
                         islemgecmisi.Add(i + "- " + ifade + ";");
                         return ((float)Math.Pow(taban, us)).ToString();
                     });
-                }     
-                /* Araştırarak buldum test aşamasında elden geçireceğim */
-
+                } 
                 double sonuc = EvaluateExpression(ifade);
                 textBox1.Text = sonuc.ToString("#,##0.0");
                 data.Add(sonuc);
@@ -326,7 +316,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D3)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true;
                 button21.PerformClick();
             }
             else if (e.KeyCode == Keys.D3)
@@ -335,7 +325,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D4)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true;
                 button11.PerformClick();
             }
             else if (e.KeyCode == Keys.D4)
@@ -345,7 +335,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D5)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true; 
                 button23.PerformClick();
             }
             else if (e.KeyCode == Keys.D5)
@@ -358,7 +348,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D7)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true; 
                 button14.PerformClick();
             }
             else if (e.KeyCode == Keys.D7)
@@ -367,7 +357,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D8)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true;
                 button18.PerformClick();
             }
             else if (e.KeyCode == Keys.D8)
@@ -376,7 +366,7 @@ namespace WindowsFormsApp1
             }
             if (e.Modifiers == Keys.Shift && e.KeyCode == Keys.D9)
             {
-                e.Handled = true; // Olayı işlendi olarak işaretliyor https://stackoverflow.com/questions/1434867/how-to-use-multiple-modifier-keys-in-c-sharp
+                e.Handled = true;
                 button19.PerformClick();
             }
             else if (e.KeyCode == Keys.D9)
@@ -523,26 +513,3 @@ namespace WindowsFormsApp1
         }
     }
 }
-/* Geliştirme Günlükleri */
-/*
-7.10.23 Cumartesi
-Gereksiz değişkenler kaldırıldı. Artık sayı,sayı2 gibi veriler tutulmuyor!
-İşlemler kısaltıldı!
-Karakök işlemi düzenlendi! Kullanım şekli (şuanlık) = √(9) ayrıca tam olarak çıkmayan sayılarda kod patlıyor try catch çalışıyor.
-İşlem geçmişi eklendi!
-Üslü işlemler eklendi! Karakök ile aynı mantıkta ifade içinde ^ bulunuyorsa Math.Pow ile işlem yaptırıyorum. İnternette bulduğum örnekte CustomPow kullanıyordu gerek duymadım şuanlık.
-Önceden büyük 1 milyon gibi sayıları , eklemeyen sistem değiştirildi, artık düzgün çalışıyor!
-İşlem Geçmişi düzenlendi!
-Klavye komutları kısaltıldı, artık sadece butona tıklıyor.
-BackSpace tuşuna tek tek harf,sayı silme eklendi!
-Yeni bir buton eklendi.Butona basıldığında bütün sayıları siliyor
-Artık aynı anda bütün işlemleri yapabiliyorsunuz!
-Shift + 3 tuşlarına basıldığında ^ işaretini çıkartıyor.3 tuşunu da engellemiyor.
-Çoğu kısa yol tuşu eklendi Shift + D4 gibi 
-Artık Enter tuşu sadece = butonunu çalıştırıyor.
-Yüzdelik işlemi entegre edildi bütün fonksiyonlarla beraber çalışabiliyor.
-M+ ve M- işlemleri eklendi.
-
-8.10.23 Pazar
-Yeni kısayollar eklendi Shift + 7 = / vs
-*/
