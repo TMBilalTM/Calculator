@@ -1,4 +1,2 @@
 # Calculator
-# Bir den çok işlemi aynı anda yapabilir,
-# işlem ve parantez önceliği var ve
-# geliştirmeye açık.
+# İşlem önceliği bulunuyor ve aynı anda birden fazla hesaplama yapabilir.
